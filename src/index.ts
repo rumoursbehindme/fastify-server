@@ -9,5 +9,6 @@ const app = fastify({
 
 app.get('/', (req, reply) => {
     reply.send(req.ip);
-})
+});
+
 app.listen({ port: 8080 });
