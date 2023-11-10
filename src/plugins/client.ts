@@ -1,6 +1,6 @@
 import { FastifyPluginAsync, } from 'fastify';
 import { Client, Issuer } from "openid-client";
-import { issuerOptions } from '../config/auth';
+import { issuerOptions } from '../../config/auth';
 import plugin from 'fastify-plugin'
 
 declare module 'fastify' {

@@ -1,5 +1,5 @@
 import { FastifyPluginAsync } from 'fastify';
-import { issuerOptions } from '../../config/auth';
+import { issuerOptions } from '../../../config/auth';
 import plugin from 'fastify-plugin';
 import { loginRoutes } from './routes/login-routes';
 
