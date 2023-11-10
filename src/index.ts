@@ -4,7 +4,7 @@ import coreModule from './modules/core/core';
 (async () => {
     const app = Fastify();
     await app.register(coreModule);
-    app.get('/', (req, reply) => {
+    app.get('/', (_req, reply) => {
         reply.setCookie('jai', 'jaii');
         return reply.type('text/html').send(`<a href='/login'>Login</a>`);
     });

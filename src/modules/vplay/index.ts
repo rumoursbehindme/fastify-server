@@ -1,29 +1,30 @@
 import plugin from 'fastify-plugin';
 import { FastifyPluginAsync } from 'fastify';
-import fetch from 'node-fetch';
+import { getRequest } from '../../common/api-handling';
 
 const vplay: FastifyPluginAsync = async function vplay(instance) {
 
     instance.get('/vplay', async (req, reply) => {
-        // const headers = {
-        //     'Authorization': tokenSet.token_type + ' ' + tokenSet.access_token
-        // };
 
         try {
-            // const response = await fetch('https://api.spotify.com/v1/me', {
-            //     method: 'GET',
-            //     headers
-            // });
+            const { tokenSet: { token_type, access_token } } = req.session;
+            const headers = {
+                'Authorization': token_type + ' ' + access_token
+            };
+            const response = await getRequest(
+                {
+                    url: 'https://api.spotify.com/v1/me', headers
+                });
 
-            // if (!response.ok) {
-            //     throw new Error(`Request failed with status: ${response.status}`);
-            // }
+            if (!response.ok) {
+                throw new Error(`Request failed with status: ${response.status}`);
+            }
 
-            // const data = await response.json(); // Convert response to JSON
+            const data = await response.json(); // Convert response to JSON
 
-            return reply.send(req.tokenSet());
+            return reply.send(data);
         } catch (error) {
-            reply.code(500).send({ error: 'Internal Server Error' });
+            reply.code(500).send(error);
         }
     })
 }

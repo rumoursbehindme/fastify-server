@@ -1,4 +1,4 @@
-import nodeFetch, { Response, HeadersInit } from 'node-fetch';
+import nodeFetch, { HeadersInit } from 'node-fetch';
 
 export interface IApiRequestModel {
     url: string;
