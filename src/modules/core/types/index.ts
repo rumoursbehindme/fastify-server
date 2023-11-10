@@ -1,9 +1,9 @@
-import { IAuthenticationModuleOptions } from "../../../lib/types";
+import { IIssuerOptions } from "../../../lib/types";
 
 export interface ICoreModuleOptions {
     config: IConfigurations;
 };
 
 interface IConfigurations {
-    authenticationModule: IAuthenticationModuleOptions;
+    issuerOptions: IIssuerOptions;
 };

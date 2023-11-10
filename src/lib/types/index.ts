@@ -1,14 +1,9 @@
-
-export interface IAuthenticationModuleOptions {
-    issuerOptions: IIssuerOptions;
-};
-
 export interface IIssuerOptions {
     client_id: string;
-    client_secrete: string;
+    client_secret: string;
     response_type: string;
+    redirect_uri: string;
     scope: string;
     grant_type: string;
     show_dialog: boolean;
-    [key: string]: any;
 };

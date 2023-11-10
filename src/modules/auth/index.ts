@@ -1,7 +1,7 @@
 import { FastifyPluginAsync } from 'fastify';
-import { issuerOptions } from '../../../config/auth';
 import plugin from 'fastify-plugin';
 import { loginRoutes } from './routes/login-routes';
+import { IAuthenticationModuleOptions } from './types';
 
 declare module "fastify" {
     interface FastifyRequest {
@@ -10,9 +10,8 @@ declare module "fastify" {
 }
 
 // Authorization code flow
-
-const authenticationModule: FastifyPluginAsync = async function authenticationModule(instance) {
-    instance.register(loginRoutes, issuerOptions)
+const authenticationModule: FastifyPluginAsync<IAuthenticationModuleOptions> = async function authenticationModule(instance) {
+    instance.register(loginRoutes)
     console.log("Registered auth module.")
 }
 

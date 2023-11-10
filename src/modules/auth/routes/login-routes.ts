@@ -1,13 +1,13 @@
 import { FastifyInstance } from "fastify";
 
-export async function loginRoutes(instance: FastifyInstance, issuerOptions: any) {
+export async function loginRoutes(instance: FastifyInstance) {
     instance.get('/login', async (_req, reply) => {
-        reply.redirect(instance.oidcClient.authorizationUrl(issuerOptions));
+        reply.redirect(await instance.getAuthorizationUrl());
     });
 
     instance.get('/callback', async (req, reply) => {
         const params = instance.oidcClient.callbackParams(req as any);
-        const tokenset = await instance.oidcClient.oauthCallback(issuerOptions.redirect_uri, params);
+        const tokenset = await instance.handleCallback(params);
         req.session.authenticated = true;
         req.session.tokenSet = tokenset;
         reply.redirect('/vplay');
