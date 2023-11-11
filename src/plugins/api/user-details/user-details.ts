@@ -1,10 +1,10 @@
-import plugin from 'fastify-plugin';
-import { FastifyPluginAsync } from 'fastify';
-import { getRequest } from '../../common/api-handling';
+import { FastifyPluginAsync } from "fastify";
+import plugin from "fastify-plugin";
+import { getRequest } from "../../../common/api-handling";
 
-const vplay: FastifyPluginAsync = async function vplay(instance) {
+const userDetails: FastifyPluginAsync = async function userDetails(instance) {
 
-    instance.get('/vplay', async (req, reply) => {
+    instance.get('/user-details', async (req, reply) => {
 
         try {
             const { tokenSet: { token_type, access_token } } = req.session;
@@ -23,10 +23,12 @@ const vplay: FastifyPluginAsync = async function vplay(instance) {
             const data = await response.json(); // Convert response to JSON
 
             return reply.send(data);
+
         } catch (error) {
             reply.code(500).send(error);
         }
+
     })
 }
 
-export default plugin(vplay);
+export default plugin(userDetails);

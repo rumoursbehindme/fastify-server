@@ -10,6 +10,6 @@ export async function loginRoutes(instance: FastifyInstance) {
         const tokenset = await instance.handleCallback(params);
         req.session.authenticated = true;
         req.session.tokenSet = tokenset;
-        reply.redirect('/vplay');
+        reply.redirect('/');
     });
 }
