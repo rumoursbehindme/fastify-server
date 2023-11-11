@@ -1,12 +1,14 @@
 import { FastifyPluginAsync } from "fastify";
 import corePlugins from "../../plugins/core";
-import authenticationModule from "../auth";
+import authenticationModule from "../authentication";
 import plugin from 'fastify-plugin';
 import vplay from "../vplay/index";
 import { homeModule } from "../home/home";
+import { ICoreModuleOptions } from "./types";
 
-const coreModule: FastifyPluginAsync = async (instance) => {
-    await instance.register(corePlugins);
+const coreModule: FastifyPluginAsync<ICoreModuleOptions> = async (instance, options) => {
+    const { issuerOptions } = options;
+    await instance.register(corePlugins, { issuerOptions });
     await instance.register(authenticationModule);
     await instance.register(homeModule);
     await instance.register(vplay);

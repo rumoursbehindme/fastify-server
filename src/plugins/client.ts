@@ -1,17 +1,28 @@
 import { FastifyPluginAsync, } from 'fastify';
-import { Client, Issuer } from "openid-client";
-import { issuerOptions } from '../config/auth';
+import { CallbackParamsType, Client, Issuer, TokenSet } from "openid-client";
 import plugin from 'fastify-plugin'
+import { IClientPluginsOptions } from './types';
 
 declare module 'fastify' {
     interface FastifyInstance {
-        oidcClient: Client
+        oidcClient: Client;
+        getAuthorizationUrl(): Promise<string>;
+        handleCallback(params: CallbackParamsType): Promise<TokenSet>
     }
 }
-const client: FastifyPluginAsync = async (instance) => {
+const client: FastifyPluginAsync<IClientPluginsOptions> = async (instance, { issuerOptions }) => {
     const issuer = await Issuer.discover('https://accounts.spotify.com');
-    const client = new issuer.Client(issuerOptions);
+    const client = new issuer.Client({ ...issuerOptions });
     instance.decorate('oidcClient', client);
+
+    instance.decorate('getAuthorizationUrl', async function getAuthorizationUrl() {
+        return client.authorizationUrl({ ...issuerOptions });
+    });
+
+    instance.decorate('handleCallback', async function handleCallback(params) {
+        return client.oauthCallback(issuerOptions.redirect_uri, params)
+    });
+
     console.log("Registered client Plugin.");
 }
 
