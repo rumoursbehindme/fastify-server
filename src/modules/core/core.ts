@@ -7,7 +7,7 @@ import { homeModule } from "../home/home";
 import { ICoreModuleOptions } from "./types";
 
 const coreModule: FastifyPluginAsync<ICoreModuleOptions> = async (instance, options) => {
-    const { config: { issuerOptions } } = options;
+    const { issuerOptions } = options;
     await instance.register(corePlugins, { issuerOptions });
     await instance.register(authenticationModule);
     await instance.register(homeModule);

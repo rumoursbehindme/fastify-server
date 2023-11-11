@@ -1,3 +1,9 @@
+
+export interface IConfigurations {
+    coreConfigurations: any;
+    serverConfigurations: any;
+}
+
 export interface IIssuerOptions {
     client_id: string;
     client_secret: string;
