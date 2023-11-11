@@ -23,8 +23,9 @@ Fastify the backend server for handling authentication details authorization and
 * ### Create an application with the name of your choice.
     * Take the redirect_uri from the source code - /config/client.INI file
     * And paste it into the redirect URI option.
+    * Select web API SDK.
     * Create the application and go to settings
-    * Take the client ID and client secret and replace them with client.INI file's client ID and client secret
+    * Take the client ID and client secret and replace them with the client.INI file's client ID and client secret
 
 
 ## Deployment
