@@ -1,6 +1,6 @@
 import { IIssuerOptions } from "../../../lib/types";
 
-export interface ICoreModuleOptions {
+export interface ICorePluginOptions {
     issuerOptions: IIssuerOptions;
 };
 

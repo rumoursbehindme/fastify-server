@@ -10,7 +10,7 @@ declare module 'fastify' {
         handleCallback(params: CallbackParamsType): Promise<TokenSet>
     }
 }
-const client: FastifyPluginAsync<IClientPluginsOptions> = async (instance, { issuerOptions }) => {
+const clientPlugin: FastifyPluginAsync<IClientPluginsOptions> = async (instance, { issuerOptions }) => {
     const issuer = await Issuer.discover('https://accounts.spotify.com');
     const client = new issuer.Client({ ...issuerOptions });
     instance.decorate('oidcClient', client);
@@ -26,4 +26,4 @@ const client: FastifyPluginAsync<IClientPluginsOptions> = async (instance, { iss
     console.log("Registered client Plugin.");
 }
 
-export default plugin(client);
+export default plugin(clientPlugin);
