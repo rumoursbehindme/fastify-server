@@ -1,5 +1,5 @@
 import Fastify from 'fastify';
-import coreModule from './modules/core/core';
+import corePlugin from './plugins/core/core';
 import { getConfigurations } from './common/configuration-handling/configuration-handling';
 import { IConfigurations } from './lib/types';
 
@@ -9,7 +9,7 @@ import { IConfigurations } from './lib/types';
 
     if (configurations) {
         const { coreConfigurations, serverConfigurations: { port } } = configurations as IConfigurations;
-        await app.register(coreModule, coreConfigurations);
+        await app.register(corePlugin, coreConfigurations);
         app.listen({ port }, (err) => {
             if (err) throw err;
             console.log(`Server is listening on http://localhost:${port}`);
