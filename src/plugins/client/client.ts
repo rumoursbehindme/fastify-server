@@ -23,7 +23,7 @@ const clientPlugin: FastifyPluginAsync<IClientPluginsOptions> = async (instance,
         return client.oauthCallback(issuerOptions.redirect_uri, params)
     });
 
-    console.log("Registered client Plugin.");
+    console.log("Registered Client Plugin.");
 }
 
 export default plugin(clientPlugin);
