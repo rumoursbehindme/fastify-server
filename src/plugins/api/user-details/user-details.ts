@@ -11,6 +11,7 @@ const userDetails: FastifyPluginAsync = async function userDetails(instance) {
             const headers = {
                 'Authorization': token_type + ' ' + access_token
             };
+
             const response = await getRequest(
                 {
                     url: 'https://api.spotify.com/v1/me', headers
