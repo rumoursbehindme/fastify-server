@@ -6,10 +6,12 @@ import plugin from 'fastify-plugin';
 import apiPlugin from "../api";
 import { homeModule } from "../home/home";
 import { ICorePluginOptions } from "./types";
+import requestDecorators from "../request-decorators";
 
 const corePlugin: FastifyPluginAsync<ICorePluginOptions> = async (instance, options) => {
     const { issuerOptions } = options;
     await instance.register(sessionPlugin);
+    await instance.register(requestDecorators);
     await instance.register(clientPlugin, { issuerOptions });
     await instance.register(authenticationPlugin);
     await instance.register(homeModule);

@@ -8,6 +8,7 @@
     "@fastify/session": "^10.5.0",
     "@types/node": "^20.9.0",
     "@types/node-fetch": "2",
+    "axios": "^1.6.2",
     "fastify": "^4.24.3",
     "fastify-plugin": "^4.5.1",
     "ini": "^4.1.1",
