@@ -16,4 +16,4 @@ const authenticationPlugin: FastifyPluginAsync<IAuthenticationModuleOptions> = a
     console.log("Registered Authentication Plugin.");
 }
 
-export default plugin(authenticationPlugin)
+export default plugin(authenticationPlugin);

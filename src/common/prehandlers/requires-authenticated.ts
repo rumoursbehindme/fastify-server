@@ -3,6 +3,7 @@ import { preHandlerAsyncHookHandler } from "fastify";
 export const requiresAuthenticated: preHandlerAsyncHookHandler = async function requiresAuthebticated(req, reply) {
     if (req.session.authenticated) {
         return;
-    }
-    return reply.redirect('/login');
+    };
+    const { url } = req;
+    return reply.redirect(`/?returnURL=${url}&error=Please authenticate to access this route: ${url}`);
 }

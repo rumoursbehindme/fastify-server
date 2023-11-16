@@ -2,7 +2,6 @@ import { FastifyPluginAsync } from "fastify";
 import plugin from "fastify-plugin";
 
 const userDetails: FastifyPluginAsync = async function userDetails(instance) {
-
     instance.get('/user-details', async (req, reply) => {
 
         try {

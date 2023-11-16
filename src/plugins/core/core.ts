@@ -3,19 +3,28 @@ import sessionPlugin from "../session/session";
 import clientPlugin from "../client/client";
 import authenticationPlugin from "../authentication";
 import plugin from 'fastify-plugin';
-import apiPlugin from "../api";
+import { apiPlugin } from "../api";
 import { homeModule } from "../home/home";
 import { ICorePluginOptions } from "./types";
-import requestDecorators from "../request-decorators";
+import requestDecorators from '../request-decorators';
+import registerMultiplePlugins from "../utils/register-multiple-plugins";
 
 const corePlugin: FastifyPluginAsync<ICorePluginOptions> = async (instance, options) => {
     const { issuerOptions } = options;
-    await instance.register(sessionPlugin);
-    await instance.register(requestDecorators);
-    await instance.register(clientPlugin, { issuerOptions });
-    await instance.register(authenticationPlugin);
-    await instance.register(homeModule);
-    await instance.register(apiPlugin);
+    await instance.register(registerMultiplePlugins);
+
+    await instance.registerPlugins(
+        [
+            { plugin: sessionPlugin },
+            { plugin: requestDecorators },
+            { plugin: clientPlugin, options: { issuerOptions } },
+            { plugin: authenticationPlugin },
+            { plugin: homeModule },
+            { plugin: apiPlugin }
+
+        ]
+    );
+
     console.log("Registered Core Plugin.")
 }
 
