@@ -16,12 +16,10 @@ const clientPlugin: FastifyPluginAsync<IClientPluginsOptions> = async (instance,
     instance.decorate('oidcClient', client);
 
     instance.decorate('getAuthorizationUrl', async function getAuthorizationUrl({ returnURL }: IAuthorizationURLOptions) {
-        console.log( btoa(JSON.stringify({ returnURL })))
         return client.authorizationUrl({ ...issuerOptions, state: btoa(JSON.stringify({ returnURL })) });
     });
 
     instance.decorate('handleCallback', async function handleCallback(params) {
-        console.log(params.state as any)
         return client.oauthCallback(issuerOptions.redirect_uri, { code: params.code, state: params.state as any }, { state: params.state as any })
     });
 
