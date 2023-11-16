@@ -13,3 +13,10 @@ export interface IIssuerOptions {
     grant_type: string;
     show_dialog: boolean;
 };
+
+export interface IQueryString {
+    Querystring: {
+        returnURL: string;
+        error?: string;
+    }
+}

@@ -3,7 +3,7 @@ import sessionPlugin from "../session/session";
 import clientPlugin from "../client/client";
 import authenticationPlugin from "../authentication";
 import plugin from 'fastify-plugin';
-import apiPlugin from "../api";
+import { apiPlugin } from "../api";
 import { homeModule } from "../home/home";
 import { ICorePluginOptions } from "./types";
 import requestDecorators from '../request-decorators';
@@ -24,6 +24,7 @@ const corePlugin: FastifyPluginAsync<ICorePluginOptions> = async (instance, opti
 
         ]
     );
+
     console.log("Registered Core Plugin.")
 }
 
