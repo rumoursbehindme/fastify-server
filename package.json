@@ -6,6 +6,7 @@
   "dependencies": {
     "@fastify/cookie": "^9.1.0",
     "@fastify/session": "^10.5.0",
+    "@fastify/static": "^6.12.0",
     "@types/node": "^20.9.0",
     "@types/node-fetch": "2",
     "axios": "^1.6.2",

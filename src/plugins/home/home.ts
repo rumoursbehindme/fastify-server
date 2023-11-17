@@ -1,11 +1,17 @@
 // import plugin from 'fastify-plugin';
 import { FastifyPluginAsync } from 'fastify';
 import { IQueryString } from '../../lib/types';
+import fastifyStatic from '@fastify/static';
+import { join } from 'path';
 
 export const homeModule: FastifyPluginAsync = async function homeModule(instance) {
+    instance.register(fastifyStatic, {
+        root: join(process.cwd(), 'public'),
+        prefix:'/'
+    })
     instance.get<IQueryString>('/', (req, reply) => {
         if (req.session.authenticated) {
-            return reply.send('Yes you are authenticated...')
+            return reply.sendFile('index.html');
         }
         const { query: { returnURL, error } } = req;
         if (error) {
