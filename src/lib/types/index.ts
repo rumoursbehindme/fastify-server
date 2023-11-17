@@ -20,3 +20,9 @@ export interface IQueryString {
         error?: string;
     }
 }
+
+export interface IAPIOptions {
+    userDetailsAPIEndpoint: string;
+    playListsAPIEndpoint: string;
+    newReleasesAPIEndpoint: string;
+}

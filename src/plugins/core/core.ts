@@ -10,7 +10,7 @@ import requestDecorators from '../request-decorators';
 import registerMultiplePlugins from "../utils/register-multiple-plugins";
 
 const corePlugin: FastifyPluginAsync<ICorePluginOptions> = async (instance, options) => {
-    const { issuerOptions } = options;
+    const { issuerOptions, apiOptions } = options;
     await instance.register(registerMultiplePlugins);
 
     await instance.registerPlugins(
@@ -20,7 +20,7 @@ const corePlugin: FastifyPluginAsync<ICorePluginOptions> = async (instance, opti
             { plugin: clientPlugin, options: { issuerOptions } },
             { plugin: authenticationPlugin },
             { plugin: homeModule },
-            { plugin: apiPlugin }
+            { plugin: apiPlugin, options: { apiOptions } }
 
         ]
     );

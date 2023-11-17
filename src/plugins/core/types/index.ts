@@ -1,7 +1,8 @@
-import { IIssuerOptions } from "../../../lib/types";
+import { IAPIOptions, IIssuerOptions } from "../../../lib/types";
 
 export interface ICorePluginOptions {
     issuerOptions: IIssuerOptions;
+    apiOptions: IAPIOptions;
 };
 
 // interface IConfigurations {
