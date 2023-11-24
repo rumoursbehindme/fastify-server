@@ -11,11 +11,11 @@ export const apiPlugin: FastifyPluginAsync<IAPIPluginOptions> = async function a
     await instance.register(addPrehandlers);
     instance.addPrehandlers([requiresAuthenticated]);
 
-    const { userDetailsAPIEndpoint, playListsAPIEndpoint, newReleasesAPIEndpoint } = apiOptions;
+    const { userDetailsAPIEndpoint, playListsAPIOptions, newReleasesAPIEndpoint } = apiOptions;
     await instance.registerPlugins(
         [
             { plugin: userDetailsAPIPlugin, options: { userDetailsAPIEndpoint } },
-            { plugin: playlistsAPIPlugin, options: { playListsAPIEndpoint } },
+            { plugin: playlistsAPIPlugin, options: { playListsAPIOptions } },
             { plugin: newReleasesAPIPlugin, options: { newReleasesAPIEndpoint } }
         ]
     )

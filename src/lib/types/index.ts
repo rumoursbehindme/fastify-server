@@ -23,6 +23,11 @@ export interface IQueryString {
 
 export interface IAPIOptions {
     userDetailsAPIEndpoint: string;
-    playListsAPIEndpoint: string;
+    playListsAPIOptions: IPlayListsAPIOptions
     newReleasesAPIEndpoint: string;
+}
+
+export interface IPlayListsAPIOptions {
+    playListsAPIEndpoint: string;
+    playlistTracksAPIEndPoint: string;
 }
