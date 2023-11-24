@@ -4,7 +4,7 @@ export function mergeAPIWithID(apiURL: string, id: string) {
         return apiURL.replace('{requiresID}', id);
     }
     catch (err) {
-        console.log('Error occurred while merging API with ID', err);
+        throw new Error('Error occurred while merging API with ID');
     }
 
 }

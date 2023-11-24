@@ -25,7 +25,7 @@ const corePlugin: FastifyPluginAsync<ICorePluginOptions> = async (instance, opti
         ]
     );
 
-    console.log("Registered Core Plugin.")
+    instance.log.info("Registered Core Plugin.")
 }
 
 export default plugin(corePlugin);

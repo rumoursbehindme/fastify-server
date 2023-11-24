@@ -19,7 +19,7 @@ export const apiPlugin: FastifyPluginAsync<IAPIPluginOptions> = async function a
             { plugin: newReleasesAPIPlugin, options: { newReleasesAPIEndpoint } }
         ]
     )
-    console.log('Registered API Plugin')
+    instance.log.info('Registered API Plugin')
 }
 
 // export default plugin(apiPlugin);

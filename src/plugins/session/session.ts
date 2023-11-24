@@ -20,7 +20,7 @@ const sessionPlugin: FastifyPluginCallback = async (instance: FastifyInstance, _
             secure: false
         }
     });
-    console.log("Registered Session Plugin.")
+    instance.log.info("Registered Session Plugin.")
 }
 
 
