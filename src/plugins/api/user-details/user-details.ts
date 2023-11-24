@@ -4,7 +4,7 @@ import plugin from "fastify-plugin";
 const newReleasesAPIPlugin: FastifyPluginAsync<{ userDetailsAPIEndpoint: string }> =
 
     async function userDetails(instance, { userDetailsAPIEndpoint }) {
-        instance.get('/user-details', async (req, reply) => {
+        instance.get('/api/user-details', async (req, reply) => {
 
             try {
                 const response = await req.spotifyGetRequest({ url: userDetailsAPIEndpoint });

@@ -5,7 +5,7 @@ const newReleases: FastifyPluginAsync<{ newReleasesAPIEndpoint: string }> =
 
     async function playLists(instance, { newReleasesAPIEndpoint }) {
 
-        instance.get('/new-releases', async (req, reply) => {
+        instance.get('/api/new-releases', async (req, reply) => {
             try {
                 const response = await req.spotifyGetRequest({ url: newReleasesAPIEndpoint });
                 if (response?.statusText.toLowerCase() !== 'ok') {
