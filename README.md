@@ -8,14 +8,14 @@ Fastify the backend server for handling authentication details authorization and
 
 1. Clone repository
 
-```bash
-  git clone https://github.com/rumoursbehindme/fastify-server.git
-```
+    ```bash
+      git clone https://github.com/rumoursbehindme/fastify-server.git
+    ```
 
 2. Install packages
-```bash
- Yarn install
-```
+    ```bash
+      Yarn install
+    ```
 ## Setup Configurations
 * ### Go to below site
    #### [Spotify Developer Dashboard](https://developer.spotify.com/dashboard)
@@ -30,9 +30,16 @@ Fastify the backend server for handling authentication details authorization and
 
 ## Deployment
 
-To deploy this project run
+* To deploy this project in development mode run :
 
-```bash
-  yarn dev
-```
-
+  ```bash
+    yarn dev
+  ```
+* To build javascript build run :
+  ```bash
+    yarn build
+  ``` 
+* To deploy the project in production mode run :
+  ```bash
+    yarn start
+  ```
