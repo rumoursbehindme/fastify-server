@@ -6,6 +6,7 @@ import addPrehandlers from "../utils/add-prehandlers";
 import playlistsAPIPlugin from "./playlists/playlists";
 import newReleasesAPIPlugin from "./new-releases/new-releases";
 import { IAPIPluginOptions } from "./types/types";
+import topTracks from "./top-tracks/top-tracks";
 
 export const apiPlugin: FastifyPluginAsync<IAPIPluginOptions> = async function apiPlugin(instance, { apiOptions }) {
     await instance.register(addPrehandlers);
@@ -16,7 +17,8 @@ export const apiPlugin: FastifyPluginAsync<IAPIPluginOptions> = async function a
         [
             { plugin: userDetailsAPIPlugin, options: { userDetailsAPIEndpoint } },
             { plugin: playlistsAPIPlugin, options: { playListsAPIOptions } },
-            { plugin: newReleasesAPIPlugin, options: { newReleasesAPIEndpoint } }
+            { plugin: newReleasesAPIPlugin, options: { newReleasesAPIEndpoint } },
+            { plugin: topTracks }
         ]
     )
     instance.log.info('Registered API Plugin')

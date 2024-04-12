@@ -1,8 +1,9 @@
 import { parse } from 'ini';
 import { join } from 'path';
 import { readFile, readdir } from 'fs/promises';
+import { IConfigurations } from '../../lib/types';
 
-export async function getConfigurations() {
+export async function getConfigurations():Promise<IConfigurations> {
     const configFolderPath = join(process.cwd(), 'config');
     try {
 
