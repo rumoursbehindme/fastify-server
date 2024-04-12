@@ -1,14 +1,23 @@
 import Fastify from 'fastify';
 import corePlugin from './plugins/core/core';
 import { getConfigurations } from './common/configuration-handling/configuration-handling';
-import { IConfigurations } from './lib/types';
+import { dayRotatedFileStream } from './lib/types/logger-helper';
+import { DateHelper } from './common/utils/date-helper';
 
 (async () => {
-    const app = Fastify();
+
     const configurations = await getConfigurations();
+    const { coreConfigurations, serverConfigurations: { port, logs: { enabled, disableRequestLogging } } } = configurations;
+    const app = Fastify({
+        logger: enabled ? {
+            base: undefined,
+            timestamp: () => `,"time":"${DateHelper.getLogFormattedDate()}"`,
+            stream: dayRotatedFileStream()
+        } : false,
+        disableRequestLogging
+    });
 
     if (configurations) {
-        const { coreConfigurations, serverConfigurations: { port } } = configurations as IConfigurations;
         await app.register(corePlugin, coreConfigurations);
         app.listen({ port }, (err) => {
             if (err) throw err;
@@ -16,6 +25,6 @@ import { IConfigurations } from './lib/types';
         });
     }
     else {
-        console.log('Configurations is incorrect unable to start the server')
+        app.log.error('Configurations is incorrect unable to start the server');
     }
 })();

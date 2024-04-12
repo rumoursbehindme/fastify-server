@@ -16,8 +16,8 @@ const registerMultiplePlugins: FastifyPluginAsync = async function registerMulti
                 await instance.register(plugin, options)
             })
         }
-        catch (error) {
-            console.log(error)
+        catch (error:any) {
+            throw new Error(error)
         }
     });
 }

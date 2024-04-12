@@ -13,7 +13,7 @@ declare module "fastify" {
 const authenticationPlugin: FastifyPluginAsync<IAuthenticationModuleOptions> = async function authenticationModule(instance) {
     await instance.register(loginRoutes);
     await instance.register(logoutRoutes);
-    console.log("Registered Authentication Plugin.");
+    instance.log.info("Registered Authentication Plugin.");
 }
 
 export default plugin(authenticationPlugin);

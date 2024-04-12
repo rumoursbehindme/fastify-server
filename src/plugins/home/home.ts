@@ -17,11 +17,8 @@ export const homeModule: FastifyPluginAsync = async function homeModule(instance
                 if (module) {
                     return reply.sendFile('index.html');
                 }
-            } catch (error) {
-                return reply.send({
-                    description: 'Please add the front-end module correctly.',
-                    error
-                })
+            } catch (error: any) {
+                throw new Error(error)
             }
         }
         const { query: { returnURL, error } } = req;
