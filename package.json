@@ -19,7 +19,9 @@
     "typescript": "^5.2.2"
   },
   "scripts": {
-    "dev": "npx ts-node src/index"
+    "dev": "npx ts-node src/index",
+    "build": "tsc",
+    "start": "node build/index"
   },
   "devDependencies": {
     "@types/ini": "^1.3.33"
