@@ -7,7 +7,7 @@ import { DateHelper } from './common/utils/date-helper';
 (async () => {
 
     const configurations = await getConfigurations();
-    const { coreConfigurations, serverConfigurations: { port, logs: { enabled, disableRequestLogging } } } = configurations;
+    const { coreConfigurations, serverConfigurations: { port, host, logs: { enabled, disableRequestLogging } } } = configurations;
     const app = Fastify({
         logger: enabled ? {
             base: undefined,
@@ -19,9 +19,9 @@ import { DateHelper } from './common/utils/date-helper';
 
     if (configurations) {
         await app.register(corePlugin, coreConfigurations);
-        app.listen({ port }, (err) => {
+        app.listen({ port, host }, (err, address) => {
             if (err) throw err;
-            console.log(`Server is listening on http://localhost:${port}`);
+            console.log(`Server is listening on ${address}`);
         });
     }
     else {
