@@ -25,6 +25,7 @@ export interface IAPIOptions {
     userDetailsAPIEndpoint: string;
     playListsAPIOptions: IPlayListsAPIOptions
     newReleasesAPIEndpoint: string;
+    featuredTracksAPIEndpoints: string;
 }
 
 export interface IPlayListsAPIOptions {

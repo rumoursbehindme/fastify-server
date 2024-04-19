@@ -10,7 +10,14 @@ export const homeModule: FastifyPluginAsync = async function homeModule(instance
         root: join(process.cwd(), 'public'),
         prefix: '/'
     })
-    instance.get<IQueryString>('/', async (req, reply) => {
+
+    instance.addHook('onRequest', async (req, reply) => {
+        if (req.url === '/') {
+            return reply.redirect('/player')
+        }
+    })
+    
+    instance.get<IQueryString>('/player*', async (req, reply) => {
         if (req.session.authenticated) {
             try {
                 const module = await readFile(join(process.cwd(), 'public/index.html'), 'utf-8');

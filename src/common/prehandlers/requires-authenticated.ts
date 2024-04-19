@@ -5,5 +5,5 @@ export const requiresAuthenticated: preHandlerAsyncHookHandler = async function 
         return;
     };
     const { url } = req;
-    return reply.redirect(`/?returnURL=${url}&error=Please authenticate to access this route: ${url}`);
+    return reply.redirect(`/player?returnURL=${url}&error=Please authenticate to access this route: ${url}`);
 }
