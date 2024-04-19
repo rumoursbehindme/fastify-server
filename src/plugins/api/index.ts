@@ -7,18 +7,20 @@ import playlistsAPIPlugin from "./playlists/playlists";
 import newReleasesAPIPlugin from "./new-releases/new-releases";
 import { IAPIPluginOptions } from "./types/types";
 import topTracks from "./top-tracks/top-tracks";
+import featuredTracks from "./featured-tracks/featured-tracks";
 
 export const apiPlugin: FastifyPluginAsync<IAPIPluginOptions> = async function apiPlugin(instance, { apiOptions }) {
     await instance.register(addPrehandlers);
     instance.addPrehandlers([requiresAuthenticated]);
 
-    const { userDetailsAPIEndpoint, playListsAPIOptions, newReleasesAPIEndpoint } = apiOptions;
+    const { userDetailsAPIEndpoint,featuredTracksAPIEndpoints, playListsAPIOptions, newReleasesAPIEndpoint } = apiOptions;
     await instance.registerPlugins(
         [
             { plugin: userDetailsAPIPlugin, options: { userDetailsAPIEndpoint } },
             { plugin: playlistsAPIPlugin, options: { playListsAPIOptions } },
             { plugin: newReleasesAPIPlugin, options: { newReleasesAPIEndpoint } },
-            { plugin: topTracks }
+            { plugin: topTracks },
+            { plugin: featuredTracks, options: { featuredTracksAPIEndpoints } }
         ]
     )
     instance.log.info('Registered API Plugin')
