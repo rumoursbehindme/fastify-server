@@ -59,10 +59,10 @@
     http-errors "2.0.0"
     mime "^3.0.0"
 
-"@fastify/session@^10.5.0":
-  version "10.5.0"
-  resolved "https://registry.npmjs.org/@fastify/session/-/session-10.5.0.tgz"
-  integrity sha512-2oXXSQ4Yy6pzLgbBoooblgHJ55DYqyxSLoKMq2CGmDZI2WPMrOIvN1bJbllWuUuCe7luPdQju3RJTRvNMW+j/g==
+"@fastify/session@^10.9.0":
+  version "10.9.0"
+  resolved "https://registry.yarnpkg.com/@fastify/session/-/session-10.9.0.tgz#7c703a4513274a5a183bd3095eb9b49714b494a5"
+  integrity sha512-u/c42RuAaxCeEuRCAwK2+/SfGqKOd0NSyRzEvDwFBWySQoKUZQyb9OmmJSWJBbOP1OfaU2OsDrjbPbghE1l/YQ==
   dependencies:
     fastify-plugin "^4.0.0"
     safe-stable-stringify "^2.3.1"
